@@ -1,10 +1,18 @@
 package br.com.ilia.digital.folhadeponto.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "momento")
 public class Momento {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "data_hora", nullable = false)
     private LocalDate dataHora;
 
     public Momento() {

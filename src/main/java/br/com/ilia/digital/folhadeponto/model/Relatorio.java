@@ -1,12 +1,28 @@
 package br.com.ilia.digital.folhadeponto.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "relatorio")
 public class Relatorio {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "mes", nullable = true)
     private String mes;
+
+    @Column(name = "horas_trabalhadas", nullable = true)
     private String horasTrabalhadas;
+
+    @Column(name = "horas_excedentes", nullable = true)
     private String horasExcedentes;
+
+    @Column(name = "horas_devidas", nullable = true)
     private String horasDevidas;
+
 
     public Relatorio() {
 

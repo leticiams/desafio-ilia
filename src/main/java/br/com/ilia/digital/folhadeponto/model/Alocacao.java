@@ -1,14 +1,27 @@
 package br.com.ilia.digital.folhadeponto.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Entity
+@Table(name = "alocacao")
 public class Alocacao {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "dia", nullable = false)
     private LocalDate dia;
+
+    @Column(name = "tempo", nullable = false)
     private LocalTime tempo;
+
+    @Column(name = "nome_projeto")
     private String nomeProjeto;
+
 
     public Alocacao() {
 
