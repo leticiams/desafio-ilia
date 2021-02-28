@@ -5,10 +5,10 @@ import br.com.ilia.digital.folhadeponto.service.RegistroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -21,6 +21,14 @@ public class RegistroResource {
     @GetMapping
     public ResponseEntity<List<Registro>> listar() {
         return ResponseEntity.status(HttpStatus.OK).body(registroService.listar());
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> salvar(@RequestBody Registro registro) {
+        registroService.salvar(registro);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(registro.getId()).toUri();
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 }
