@@ -1,12 +1,12 @@
-# Controle de Ponto API
+# Controle de Ponto API :clock4:
 
 To read an English version of this read me click <a href="https://github.com/leticiams/desafio-ilia/blob/master/ReadMeEnglishVersion">here</a>. :speech_balloon: 
 
-### Descrição do projeto
+### Descrição do projeto :seedling:
 
 API REST que faz o controle de registros de ponto de um funcionário. 
 
-### STATUS
+### STATUS :technologist:
 
 - Alocações (Finalizado)
 - Registros (Finalizado)
@@ -18,37 +18,37 @@ API REST que faz o controle de registros de ponto de um funcionário.
 - Documentação pelo Swagger (Finalizado)
 - Docker 
 
-### Pré-requisitos
+### Pré-requisitos :thumbsup:
 
 - JDK 11 e Maven
 - Banco MySQL
 - IntelliJ ou Eclipse, preferencialmente
 
-### Foi utilizado
+### Foi utilizado :point_down:
 
 - Postman
 - Docker
 OBS: Para subir o banco manualmente: usar os scripts script.sql e data.sql
 
-### Instalação da aplicação
+### Instalação da aplicação :point_down:
 
 - mvn install
 
-### Iniciar aplicação
+### Iniciar aplicação :point_down:
 
 - Rodar a classe FolhaDePontoApplication
 
-### Comando para os testes (unitários e integração)
+### Comando para os testes (unitários e integração) :point_down:
 
 - mvn install (testes unitários)
 - mvn test (teste de integração)
 
-### Documentação da API
+### Documentação da API :speech_balloon:
 
 - Basta acessar '/swagger-ui.html' na porta em uso
 
 
-## Comportamento da API:
+## Comportamento da API: :anger:
 
 `POST v1/batidas/`
 
