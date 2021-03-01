@@ -4,11 +4,14 @@ import br.com.ilia.digital.folhadeponto.dto.RegistroDTO;
 import br.com.ilia.digital.folhadeponto.exceptionhandler.*;
 import br.com.ilia.digital.folhadeponto.model.Registro;
 import br.com.ilia.digital.folhadeponto.repository.RegistroRepository;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @Service
@@ -62,6 +65,25 @@ public class RegistroService {
         if (registro == null) {
             throw new RegistroNotFoundException();
         }
+    }
+
+    public LocalTime totalHorasTrabalhadas(RegistroDTO registroDTO) {
+        LocalTime primeiroPeriodo = registroDTO.getHorarios().get(1).minusSeconds(registroDTO.getHorarios().get(0).getSecond());
+        LocalTime segundoPeriodo = registroDTO.getHorarios().get(3).minusSeconds(registroDTO.getHorarios().get(2).getSecond());
+
+        int totalSegundosTrabalhados = primeiroPeriodo.getSecond() + segundoPeriodo.getSecond();
+
+        double horas = totalSegundosTrabalhados / 3600;
+        double minutos = (totalSegundosTrabalhados % 3600) / 60;
+        double segundos = totalSegundosTrabalhados % 60;
+
+        String tempoHora = String.format("%02d:%02d:%02d", horas, minutos, segundos);
+
+        DateTimeFormatter parserHora= DateTimeFormatter.ofPattern("HHmmss");
+        LocalTime horaFormatada = LocalTime.parse(tempoHora, parserHora);
+
+        return horaFormatada;
+
     }
 
 }

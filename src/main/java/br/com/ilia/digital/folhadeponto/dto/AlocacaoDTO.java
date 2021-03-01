@@ -1,5 +1,7 @@
 package br.com.ilia.digital.folhadeponto.dto;
 
+import br.com.ilia.digital.folhadeponto.model.Registro;
+
 import java.time.LocalDate;
 
 public class AlocacaoDTO {
@@ -8,6 +10,7 @@ public class AlocacaoDTO {
     private LocalDate dia;
     private String tempo;
     private String nomeProjeto;
+    private RegistroDTO registroDTO;
 
 
     public Long getId() {

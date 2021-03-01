@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.servlet.http.HttpServletResponse;
+import java.time.format.DateTimeParseException;
 
 @ControllerAdvice
 public class folhadepontoExceptionHandler extends ResponseEntityExceptionHandler  {
@@ -61,6 +62,15 @@ public class folhadepontoExceptionHandler extends ResponseEntityExceptionHandler
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msg);
     }
+
+    @ExceptionHandler({ AlocadoTempoMaiorException.class })
+    public ResponseEntity<Mensagem> handleAlocadoTempoMaiorException(AlocadoTempoMaiorException ex, HttpServletResponse request) {
+        msg.setMensagem("Não pode alocar tempo maior que o tempo trabalhado no dia");
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(msg);
+    }
+
+
 
 
     public static class Mensagem {

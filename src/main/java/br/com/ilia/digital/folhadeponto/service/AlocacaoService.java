@@ -1,9 +1,12 @@
 package br.com.ilia.digital.folhadeponto.service;
 
 import br.com.ilia.digital.folhadeponto.dto.AlocacaoDTO;
+import br.com.ilia.digital.folhadeponto.dto.RegistroDTO;
 import br.com.ilia.digital.folhadeponto.exceptionhandler.AlocacaoNotFoundException;
+import br.com.ilia.digital.folhadeponto.exceptionhandler.AlocadoTempoMaiorException;
 import br.com.ilia.digital.folhadeponto.exceptionhandler.MethodArgumentNotValidException;
 import br.com.ilia.digital.folhadeponto.model.Alocacao;
+import br.com.ilia.digital.folhadeponto.model.Registro;
 import br.com.ilia.digital.folhadeponto.repository.AlocacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,6 +21,12 @@ public class AlocacaoService {
 
     @Autowired
     private AlocacaoRepository alocacaoRepository;
+
+    @Autowired
+    private RegistroService registroService;
+
+    private RegistroDTO registroDTO = new RegistroDTO();
+
 
     public List<Alocacao> listar() {
         return alocacaoRepository.findAll();
@@ -58,6 +67,7 @@ public class AlocacaoService {
         String horaParaFomatar = alocacaoDTO.getTempo().replaceAll("[PTHMS]", "");
         DateTimeFormatter parserHora= DateTimeFormatter.ofPattern("HHmmss");
         LocalTime horaFormatada = LocalTime.parse(ajustaHora(horaParaFomatar), parserHora);
+
         return horaFormatada;
     }
 
@@ -66,5 +76,16 @@ public class AlocacaoService {
 
         return horaFormatada;
     }
+
+    private void comparaHorasTrabalhadas(AlocacaoDTO alocacaoDTO) {
+        double horaTrabalhada = registroService.totalHorasTrabalhadas(registroDTO).getHour();
+        double horaAlocada = formatTempo(alocacaoDTO).getHour();
+
+        if(horaAlocada>horaTrabalhada){
+            throw new AlocadoTempoMaiorException();
+        }
+
+    }
+
 
 }
