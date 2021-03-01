@@ -27,6 +27,13 @@ public class folhadepontoExceptionHandler extends ResponseEntityExceptionHandler
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(msg);
     }
 
+    @ExceptionHandler({ FimdeSemanaNotAllowedException.class })
+    public ResponseEntity<Mensagem> handleFimdeSemanaNotAllowedException(FimdeSemanaNotAllowedException ex, HttpServletResponse request) {
+        msg.setMensagem("Sábado e domingo não são permitidos como dia de trabalho");
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msg);
+    }
+
 
     public static class Mensagem {
 
