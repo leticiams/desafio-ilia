@@ -1,5 +1,6 @@
 # Controle de Ponto API
 
+To read an English version of this read me click <a href="https://github.com/leticiams/desafio-ilia/blob/master/ReadMeEnglishVersion">here</a>. :speech_balloon: 
 
 ### Descrição do projeto
 
@@ -15,23 +16,23 @@ API REST que faz o controle de registros de ponto de um funcionário.
    - AlocacaoResource
    - Integração
 - Documentação pelo Swagger (Finalizado)
-- Docker 
+- Docker (Em progresso)
 
 ### Pré-requisitos
 
 - JDK 11 e Maven
-- Banco MySQL 
+- Banco MySQL
 - IntelliJ ou Eclipse, preferencialmente
 
 ### Foi utilizado
 
-- Postman 
+- Postman
 - Docker
 OBS: Para subir o banco manualmente: usar os scripts script.sql e data.sql
 
 ### Instalação da aplicação
 
-- mvn install 
+- mvn install
 
 ### Iniciar aplicação
 
@@ -39,8 +40,12 @@ OBS: Para subir o banco manualmente: usar os scripts script.sql e data.sql
 
 ### Comando para os testes (unitários e integração)
 
-- mvn integration-test ou mvn test ou mvn install
-ou "Run Test" do IntelliJ
+- mvn install (testes unitários)
+- mvn test (teste de integração)
+
+### Documentação da API
+
+- Basta acessar '/swagger-ui.html' na porta em uso
 
 
 ## Comportamento da API:
