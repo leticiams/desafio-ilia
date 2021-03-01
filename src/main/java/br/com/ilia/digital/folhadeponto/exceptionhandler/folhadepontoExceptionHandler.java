@@ -48,6 +48,13 @@ public class folhadepontoExceptionHandler extends ResponseEntityExceptionHandler
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msg);
     }
 
+    @ExceptionHandler({ HoraAlmocoInvalidaException.class })
+    public ResponseEntity<Mensagem> handleHoraAlmocoInvalidaException(HoraAlmocoInvalidaException ex, HttpServletResponse request) {
+        msg.setMensagem("Deve haver no mínimo 1 hora de almoço");
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msg);
+    }
+
 
     public static class Mensagem {
 
