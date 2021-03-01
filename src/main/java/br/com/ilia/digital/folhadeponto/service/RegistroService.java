@@ -1,9 +1,7 @@
 package br.com.ilia.digital.folhadeponto.service;
 
 import br.com.ilia.digital.folhadeponto.dto.RegistroDTO;
-import br.com.ilia.digital.folhadeponto.exceptionhandler.FimdeSemanaNotAllowedException;
-import br.com.ilia.digital.folhadeponto.exceptionhandler.HoraAlmocoInvalidaException;
-import br.com.ilia.digital.folhadeponto.exceptionhandler.MaisNumerosBatidaException;
+import br.com.ilia.digital.folhadeponto.exceptionhandler.*;
 import br.com.ilia.digital.folhadeponto.model.Registro;
 import br.com.ilia.digital.folhadeponto.repository.RegistroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +29,7 @@ public class RegistroService {
         registro.setTerceiroHorario(registroDTO.getHorarios().get(2));
         registro.setQuartoHorario(registroDTO.getHorarios().get(3));
 
+        naoExiste(registro);
         validaFimDeSemana(registro);
         validaNumeroBatidas(registroDTO);
         validaHoraAlmoco(registroDTO);
@@ -56,6 +55,12 @@ public class RegistroService {
         LocalTime horaAlmoco = registroDTO.getHorarios().get(2).minusHours(registroDTO.getHorarios().get(1).getHour());
         if (horaAlmoco.getHour() < 1) {
             throw new HoraAlmocoInvalidaException();
+        }
+    }
+
+    private void naoExiste(Registro registro) {
+        if (registro == null) {
+            throw new RegistroNotFoundException();
         }
     }
 

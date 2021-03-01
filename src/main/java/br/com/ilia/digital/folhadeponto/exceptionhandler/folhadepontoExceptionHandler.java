@@ -55,6 +55,13 @@ public class folhadepontoExceptionHandler extends ResponseEntityExceptionHandler
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msg);
     }
 
+    @ExceptionHandler({ RegistroNotFoundException.class })
+    public ResponseEntity<Mensagem> handleRegistroNotFoundException(RegistroNotFoundException ex, HttpServletResponse request) {
+        msg.setMensagem("Registro não encontrado");
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msg);
+    }
+
 
     public static class Mensagem {
 

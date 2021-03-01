@@ -31,7 +31,7 @@ public class AlocacaoService {
     }
 
     private void naoExiste(Alocacao alocacao) {
-        if (alocacao.getId() == null) {
+        if (alocacao == null) {
             throw new AlocacaoNotFoundException();
         }
     }
