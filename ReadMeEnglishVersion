@@ -1,0 +1,129 @@
+# Controle de Ponto API
+
+
+### Description
+
+API REST which controls an employee's points recods.
+
+### STATUS
+
+- Alocações (Done)
+- Registros (Done)
+- Momentos (In Progress)
+- Relatórios (In Progress)
+- Tests:
+   - AlocacaoResource
+   - Integration
+- Documentation by Swagger (Done)
+- Docker (In Progress)
+
+### Prerequisites
+
+- JDK 11 and Maven
+- MySQL
+- IntelliJ or Eclipse, or any IDE
+
+### Was used
+
+- Postman
+- Docker
+OBS: to mannually build the database source:
+   - use the scripts: script.sql and data.sql
+
+### Installation
+
+- mvn install
+
+### Inicialization
+
+- Run class FolhaDePontoApplication
+
+### To run the tests (unitary and integration)
+
+- mvn install (unitary tests)
+- mvn test (integration test)
+
+### Documentation
+
+- access '/swagger-ui.html' in your usual default port
+
+
+## API'S Behavior:
+
+`POST v1/batidas/`
+
+##### Response
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+
+    {
+        "dia":"2021-02-28",
+        "horarios":["08:00:00", "12:00:00", "13:02:00", "17:00:00"]
+    }
+
+
+  `GET v1/batidas/`
+
+   ##### Response
+
+       HTTP/1.1 200 OK
+       Content-Type: application/json
+
+       {
+               "id": 1,
+               "dia": "2021-02-28",
+               "primeiroHorario": "08:00:00",
+               "segundoHorario": "12:00:00",
+               "terceiroHorario": "13:00:00",
+               "quartoHorario": "17:00:00",
+               "momento": {
+                   "id": 1,
+                   "dataHora": "2021-02-28 18:40:30"
+               }
+           }
+
+
+
+  `GET v1/batidas/momento`
+
+  ##### Response
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      {
+              "id": 1,
+              "dataHora": "2021-02-28 18:40:30"
+          }
+
+
+
+`POST v1/alocacoes/`
+
+##### Response
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+
+    {
+        "dia" : "2021-02-28",
+        "tempo" : "PT8H00M0S",
+        "nomeProjeto" : "ACME Corporation"
+    }
+
+
+
+ `GET v1/alocacoes/`
+
+ ##### Response
+
+     HTTP/1.1 200 OK
+     Content-Type: application/json
+
+     {
+          "id": 1,
+          "dia": "2021-02-28",
+          "tempo": "08:00:00",
+          "nomeProjeto": "ACME Corporation"
+     }
