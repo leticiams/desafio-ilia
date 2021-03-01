@@ -2,6 +2,7 @@ package br.com.ilia.digital.folhadeponto.service;
 
 import br.com.ilia.digital.folhadeponto.dto.RegistroDTO;
 import br.com.ilia.digital.folhadeponto.exceptionhandler.FimdeSemanaNotAllowedException;
+import br.com.ilia.digital.folhadeponto.exceptionhandler.MaisNumerosBatidaException;
 import br.com.ilia.digital.folhadeponto.model.Registro;
 import br.com.ilia.digital.folhadeponto.repository.RegistroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class RegistroService {
         registro.setQuartoHorario(registroDTO.getHorarios().get(3));
 
         validaFimDeSemana(registro);
+        validaNumeroBatidas(registroDTO);
 
         return registroRepository.save(registro);
     }
@@ -36,6 +38,14 @@ public class RegistroService {
     private void validaFimDeSemana(Registro registro) {
         if((registro.getDia().getDayOfWeek() == DayOfWeek.SUNDAY) || (registro.getDia().getDayOfWeek() == DayOfWeek.SATURDAY)) {
             throw new FimdeSemanaNotAllowedException();
+        }
+    }
+
+    private void validaNumeroBatidas(RegistroDTO registroDTO) {
+        if (registroDTO.getHorarios().size() < 4) {
+            throw new IndexOutOfBoundsException();
+        } else if (registroDTO.getHorarios().size() > 4) {
+            throw new MaisNumerosBatidaException();
         }
     }
 

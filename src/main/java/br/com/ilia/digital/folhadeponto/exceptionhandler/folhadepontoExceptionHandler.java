@@ -31,7 +31,21 @@ public class folhadepontoExceptionHandler extends ResponseEntityExceptionHandler
     public ResponseEntity<Mensagem> handleFimdeSemanaNotAllowedException(FimdeSemanaNotAllowedException ex, HttpServletResponse request) {
         msg.setMensagem("Sábado e domingo não são permitidos como dia de trabalho");
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msg);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msg);
+    }
+
+    @ExceptionHandler({ MaisNumerosBatidaException.class })
+    public ResponseEntity<Mensagem> handleMaisNumerosBatidaException(MaisNumerosBatidaException ex, HttpServletResponse request) {
+        msg.setMensagem("Apenas 4 horários podem ser registrados por dia");
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msg);
+    }
+
+    @ExceptionHandler({ IndexOutOfBoundsException.class })
+    public ResponseEntity<Mensagem> handleIndexOutOfBoundsException(IndexOutOfBoundsException ex, HttpServletResponse request) {
+        msg.setMensagem("Devem ser registrados 4 horários por dia");
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msg);
     }
 
 
