@@ -1,5 +1,6 @@
 package br.com.ilia.digital.folhadeponto.resources;
 
+import br.com.ilia.digital.folhadeponto.dto.AlocacaoDTO;
 import br.com.ilia.digital.folhadeponto.model.Alocacao;
 import br.com.ilia.digital.folhadeponto.service.AlocacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,11 @@ public class AlocacaoResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> salvar(@RequestBody Alocacao alocacao) {
-        alocacaoService.salvar(alocacao);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(alocacao.getId()).toUri();
+    public ResponseEntity<Void> salvar(@RequestBody AlocacaoDTO alocacaoDTO) {
+        alocacaoService.salvar(alocacaoDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(alocacaoDTO.getId()).toUri();
 
-        return new ResponseEntity("Horas alocadas ao projeto", HttpStatus.OK);
+        return new ResponseEntity("Horas alocadas ao projeto", HttpStatus.CREATED);
     }
 
 }

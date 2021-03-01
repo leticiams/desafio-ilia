@@ -20,6 +20,13 @@ public class folhadepontoExceptionHandler extends ResponseEntityExceptionHandler
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msg);
     }
 
+    @ExceptionHandler({ MethodArgumentNotValidException.class })
+    public ResponseEntity<Mensagem> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, HttpServletResponse request) {
+        msg.setMensagem("Campo obrigatório não informado");
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(msg);
+    }
+
 
     public static class Mensagem {
 

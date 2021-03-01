@@ -19,7 +19,7 @@ public class Alocacao {
     @Column(name = "tempo", nullable = false)
     private LocalTime tempo;
 
-    @Column(name = "nome_projeto")
+    @Column(name = "nome_projeto", nullable = true)
     private String nomeProjeto;
 
 
