@@ -1,5 +1,6 @@
 package br.com.ilia.digital.folhadeponto.resources;
 
+import br.com.ilia.digital.folhadeponto.dto.RegistroDTO;
 import br.com.ilia.digital.folhadeponto.model.Registro;
 import br.com.ilia.digital.folhadeponto.service.RegistroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,11 @@ public class RegistroResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> salvar(@RequestBody Registro registro) {
-        registroService.salvar(registro);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(registro.getId()).toUri();
+    public ResponseEntity<Void> salvar(@RequestBody RegistroDTO registroDTO) {
+        registroService.salvar(registroDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(registroDTO.getId()).toUri();
 
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
 }
