@@ -33,6 +33,7 @@ public class RegistroService {
         registro.setQuartoHorario(registroDTO.getHorarios().get(3));
 
         naoExiste(registro);
+        jaExiste(registroDTO);
         validaFimDeSemana(registro);
         validaNumeroBatidas(registroDTO);
         validaHoraAlmoco(registroDTO);
@@ -64,6 +65,12 @@ public class RegistroService {
     private void naoExiste(Registro registro) {
         if (registro == null) {
             throw new RegistroNotFoundException();
+        }
+    }
+
+    private void jaExiste(RegistroDTO registroDTO) {
+        if (registroDTO != null) {
+            throw new RegistroExistenteException();
         }
     }
 
