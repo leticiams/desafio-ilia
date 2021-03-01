@@ -4,4 +4,4 @@ INSERT INTO `registro` (`id`, `dia`, `primeiro_horario`, `segundo_horario`, `ter
 INSERT INTO `alocacao` (`id`, `dia`, `tempo`, `nome_projeto`) VALUES
 (1, '2021-02-28 18:40:30', '08:00:00', 'ACME Corporation');
 
-INSERT INTO MOMENTO values (1, '2021-02-28 18:40:30');
+INSERT INTO `alocacao` values (1, '2021-02-28 18:40:30');
