@@ -16,7 +16,7 @@ API REST que faz o controle de registros de ponto de um funcionário.
    - AlocacaoResource
    - Integração
 - Documentação pelo Swagger (Finalizado)
-- Docker (Em progresso)
+- Docker 
 
 ### Pré-requisitos
 
